@@ -1,0 +1,50 @@
+html {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+body {
+  display: block;
+  font-family: helvetica, arial;
+}
+
+li {
+  list-style: none;  
+}
+
+p {
+  margin: 0px;
+}
+
+h1 {
+  color: green;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.item {
+  width: 600px;
+  height: auto;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.item a {
+  text-decoration: none;
+  color: green;
+}
+
+.item .title {
+  font-size: 1.5em;
+}
+
+.item .footer {
+  margin-top: 10px;
+  color: green;  
+  text-align: right;
+}
