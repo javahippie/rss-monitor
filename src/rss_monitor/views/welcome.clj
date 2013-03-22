@@ -28,6 +28,6 @@
              (submit-button "Suchen"))))
   
 
-(defpage [:post "feed"] {:keys [adresse]} 
+(defpage [:post "/feed"] {:keys [adresse]} 
          (common/layout
            (list-items adresse)))
