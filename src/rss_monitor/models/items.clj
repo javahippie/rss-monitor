@@ -3,21 +3,30 @@
 
 (defrecord Item [title link description date])
 
-(defn get-content [tags] (for [x tags
-                               :when (= :item (:tag x))]
-                           (:content x)))
+(defn get-content 
+  [tags] 
+  (map :content 
+    (filter #(= :item (:tag %)) tags)))
 
-(defn get-tag [item tag] (for [x item
-                               :when (= tag (:tag x))]
-                           (first (:content x))))
+(defn get-tag 
+  [item tag] 
+  (map #(first (:content %)) 
+    (filter #(= tag (:tag %)) item)))
 
-(defn get-items [source] (for [x source]
-                           (Item. (first (get-tag x :title ))
-                             (first (get-tag x :link ))
-                             (first (get-tag x :description ))
-                             (first (get-tag x :pubDate )))
-                           )
-  )
+(defn get-item 
+  [source]  
+  (Item. 
+    (first (get-tag source :title)) 
+    (first (get-tag source :link)) 
+    (first (get-tag source :description)) 
+    (first (get-tag source :pubDate))))
+
+(defn get-items 
+  [source] 
+  (map get-item source))
 
 (defn get-data [uri]
-  (get-items (get-content (xml-seq (xml/parse uri)))))
+  (get-items 
+     (get-content 
+        (xml-seq 
+           (clojure.xml/parse uri)))))
